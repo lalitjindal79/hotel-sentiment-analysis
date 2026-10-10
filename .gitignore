@@ -1,0 +1,66 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Data (too large for git)
+data/*.csv
+data/*.zip
+data/*.parquet
+
+# Model weights (too large for git)
+models/saved_models/*.bin
+models/saved_models/*.pt
+models/saved_models/*.pth
+models/saved_models/*.safetensors
+models/saved_models/bert/
+models/saved_models/gpt/
+
+# Environment variables
+.env
+.env.local
+
+# GitHub push helper (contains sensitive token logic — don't commit token)
+# github_push.py is kept locally, not pushed
+
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Results (optional)
+# results/plots/*.png

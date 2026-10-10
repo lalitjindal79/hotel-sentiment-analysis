@@ -1,0 +1,116 @@
+[build-system]
+requires      = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name        = "hotel-sentiment-analysis"
+version     = "1.0.0"
+description = "Hotel Reviews Sentiment Analysis using BERT, GPT-2 and Ollama (Llama3)"
+readme      = "README.md"
+license     = { file = "LICENSE" }
+requires-python = ">=3.9"
+
+authors = [
+  { name = "Dr. Lalit", email = "lalitjindal79@github" },
+]
+
+keywords = [
+  "nlp", "sentiment-analysis", "hotel-reviews", "bert",
+  "gpt2", "ollama", "llama3", "transformers", "huggingface",
+]
+
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Science/Research",
+  "Intended Audience :: Education",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+  "Topic :: Text Processing :: Linguistic",
+]
+
+dependencies = [
+  "torch>=2.1.0",
+  "transformers>=4.35.2",
+  "datasets>=2.15.0",
+  "scikit-learn>=1.3.2",
+  "pandas>=2.1.3",
+  "numpy>=1.26.2",
+  "nltk>=3.8.1",
+  "contractions>=0.1.73",
+  "matplotlib>=3.8.2",
+  "seaborn>=0.13.0",
+  "tqdm>=4.66.1",
+  "requests>=2.31.0",
+  "rich>=13.7.0",
+]
+
+[project.optional-dependencies]
+api = [
+  "fastapi>=0.104.1",
+  "uvicorn[standard]>=0.24.0",
+  "pydantic>=2.5.0",
+]
+gradio = [
+  "gradio>=4.7.1",
+]
+ollama = [
+  "ollama>=0.1.7",
+]
+dev = [
+  "pytest>=7.4.3",
+  "pytest-cov>=4.1.0",
+  "black>=23.11.0",
+  "isort>=5.12.0",
+  "flake8>=6.1.0",
+]
+all = [
+  "hotel-sentiment-analysis[api,gradio,ollama,dev]",
+]
+
+[project.urls]
+Homepage      = "https://github.com/lalitjindal79/hotel-sentiment-analysis"
+Repository    = "https://github.com/lalitjindal79/hotel-sentiment-analysis"
+"Bug Tracker" = "https://github.com/lalitjindal79/hotel-sentiment-analysis/issues"
+Documentation = "https://github.com/lalitjindal79/hotel-sentiment-analysis#readme"
+
+[project.scripts]
+hotel-train   = "train_all:main"
+hotel-compare = "compare_models:main"
+hotel-api     = "uvicorn api.main:app --host 0.0.0.0 --port 8000"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.black]
+line-length    = 100
+target-version = ["py39", "py310", "py311"]
+include        = '\.pyi?$'
+
+[tool.isort]
+profile         = "black"
+line_length     = 100
+known_first_party = ["config", "data_loader", "preprocessing", "bert_model",
+                     "gpt_model", "ollama_model", "evaluate", "compare_models",
+                     "inference", "train_all"]
+
+[tool.pytest.ini_options]
+testpaths    = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts      = "-v --tb=short"
+
+[tool.coverage.run]
+source = ["src"]
+omit   = ["tests/*", "*/conftest.py"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "pragma: no cover",
+  "if __name__ == .__main__.:",
+  "raise NotImplementedError",
+]
